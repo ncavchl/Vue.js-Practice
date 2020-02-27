@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>Vue To do list</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<style>
+    .dropdown ul {
+        display: none;
+        list-style: none;
+        margin: 0;
+        border: 1px solid black;
+        padding: 10px;
+        width:200px;
+    }
+
+    .dropdown.on ul {
+        display: block;
+    }
+
+</style>
+<body>
+<div id="app">
+    <!-- <img :id="'thumbnail_${id}'" :src="image" > img v-bind:src="image" -->
+    <div :class="[dropdown, toggle]" :style="[style, fontStyle]">
+       <ul>
+            <li><a href="#">메뉴1</a></li>
+            <li><a href="#">메뉴2</a></li>
+       </ul>
+    </div>
+
+
+</div>
+
+<!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+<script> 
+    let app = new Vue({
+        //실시간으로 값 변경 
+        el: "#app",
+        data(){
+            return {
+                id: 1,
+                image:'https://picsum.photos/200/200/?image=353',
+                style: {
+                    background:'red',
+                    border : '1px solid #000',
+                    'font-size': '25px', //fontSize = 대쉬 대신 대문자로 적으면 '' 안해도 됨
+                },
+                fontStyle :{
+                        fontFamily: 'dotum'
+                } , 
+                dropdown: {
+                    dropdown: true
+                },
+                toggle: {
+                    on: false
+                }
+                
+            };
+        }
+    })
+
+
+</script>
+
+</body>
+</html>
