@@ -22,13 +22,21 @@
 <body>
 <div id="app">
     <!-- <img :id="'thumbnail_${id}'" :src="image" > img v-bind:src="image" -->
+    <button type="button" v-on:click="add">더하기</button><!--v-on:click="add" 대신 @click="add" 도 가능-->
+    {{counter}}
+
+    <input type="text" @keyup="keyup"/><!--키업반응-->
+    <input type="text" @keyup.enter="keyup"/><!--엔터키에만 반응-->
+
+
+    <br>
+    <button type="button" @click="btnClick">버튼</button>
     <div :class="[dropdown, toggle]" :style="[style, fontStyle]">
-       <ul>
+        <ul>
             <li><a href="#">메뉴1</a></li>
             <li><a href="#">메뉴2</a></li>
-       </ul>
+        </ul>
     </div>
-
 
 </div>
 
@@ -40,10 +48,9 @@
         el: "#app",
         data(){
             return {
-                id: 1,
-                image:'https://picsum.photos/200/200/?image=353',
+                counter: 0,
                 style: {
-                    background:'red',
+                    background:'#f3f3f3',
                     border : '1px solid #000',
                     'font-size': '25px', //fontSize = 대쉬 대신 대문자로 적으면 '' 안해도 됨
                 },
@@ -56,8 +63,27 @@
                 toggle: {
                     on: false
                 }
-                
             };
+        },
+        methods: {
+            //화살표 함수 사용하면 안됨. this 바인딩이 안됨.
+            add(){
+                this.counter++;
+                //console.log(this.counter);
+            },
+            keyup(ev){
+                if(ev.keyCode != 13){
+                    console.log('Not EnterKey');
+                    return;
+                }
+                console.log('Press EnterKey');
+            },
+            btnClick(){
+                this.toggle.on = ! this.toggle.on;
+                // 현재 온 상태의 반대로 저장하기
+            }
+
+        
         }
     })
 
